@@ -10,6 +10,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,8 +35,9 @@ public class LocationService {
     @Transactional(readOnly = true)
     public List<NearbyDriverView> findNearbyAvailable(double lat, double lng, int radiusM, String vehicleType,
                                                       UUID rideId, int limit) {
+        int safeLimit = Math.max(1, limit);
         Instant since = Instant.now().minusSeconds(dispatchProps.locationFreshnessSeconds());
-        return repo.findNearbyAvailable(lat, lng, radiusM, vehicleType, rideId, since, limit);
+        return repo.findNearbyAvailable(lat, lng, radiusM, vehicleType, rideId, since, PageRequest.of(0, safeLimit));
     }
 
     @Transactional(readOnly = true)

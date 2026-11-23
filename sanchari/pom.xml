@@ -150,28 +150,31 @@
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		</dependency>
+		
+		<!-- Tomcat for external WAR deployment -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-tomcat</artifactId>
+		    <scope>provided</scope>
+		</dependency>
 
     </dependencies>
 
     <!-- Build Configuration -->
-    <build>
-        <plugins>
-
-            <!-- Spring Boot Plugin -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-
-        </plugins>
-    </build>
-
+	<build>
+	    <plugins>
+	        <plugin>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-maven-plugin</artifactId>
+	            <configuration>
+	                <excludes>
+	                    <exclude>
+	                        <groupId>org.projectlombok</groupId>
+	                        <artifactId>lombok</artifactId>
+	                    </exclude>
+	                </excludes>
+	            </configuration>
+	        </plugin>
+	    </plugins>
+	</build>
 </project>
