@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Java-Version: 22
+Build-Jdk-Spec: 22
+Implementation-Title: Sanchari Application
+Implementation-Version: 0.1.0-SNAPSHOT
+Created-By: Maven Integration for Eclipse
+
