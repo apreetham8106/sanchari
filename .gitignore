@@ -2,19 +2,34 @@
 # ==========================================
 # Java / Maven
 # ==========================================
+
+# Maven build output - root and nested projects
 target/
+**/target/
+
+# Compiled Java files
 *.class
+
+# Java packaged artifacts
 *.jar
 *.war
 *.ear
 
-# Maven wrapper - keep wrapper scripts and properties
-# (Do not ignore mvnw, mvnw.cmd or .mvn/wrapper/maven-wrapper.properties)
+# Other Java build output
+bin/
+out/
+build/
+
+# Maven wrapper
+# Keep mvnw, mvnw.cmd and .mvn/wrapper/maven-wrapper.properties
 
 # ==========================================
 # Spring Boot / Logs
 # ==========================================
+
 logs/
+**/logs/
+
 *.log
 *.log.*
 spring.log
@@ -22,35 +37,53 @@ spring.log
 # ==========================================
 # Environment and Secrets
 # ==========================================
+
 .env
 .env.*
 !.env.example
+
 application-local.properties
 application-dev-local.properties
 application-prod-local.properties
+
 secrets/
+
 *.pem
 *.key
 *.p12
 *.jks
 
 # ==========================================
-# Angular / Node
+# Angular / Ionic / Node
 # ==========================================
-node_modules/
-dist/
-.angular/
-.nx/
-coverage/
-npm-debug.log*
-yarn-debug.log*
-pnpm-debug.log*
+
+frontend/node_modules/
+frontend/dist/
+frontend/www/
+frontend/.angular/
+frontend/.nx/
+frontend/coverage/
+
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/pnpm-debug.log*
 
 # ==========================================
-# IDE
+# Android / Capacitor Build Artifacts
 # ==========================================
+
+frontend/android/.gradle/
+frontend/android/build/
+frontend/android/app/build/
+frontend/android/local.properties
+
+# ==========================================
+# IDE - Eclipse / Spring Tool Suite / IntelliJ
+# ==========================================
+
 .idea/
 *.iml
+
 .classpath
 .project
 .settings/
@@ -61,21 +94,28 @@ pnpm-debug.log*
 # ==========================================
 # VS Code
 # ==========================================
+
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
 
+frontend/.vscode/*
+!frontend/.vscode/extensions.json
+!frontend/.vscode/settings.json
+
 # ==========================================
-# OS generated files
+# OS Generated Files
 # ==========================================
+
 .DS_Store
 Thumbs.db
 desktop.ini
 $RECYCLE.BIN/
 
 # ==========================================
-# Temporary files
+# Temporary Files
 # ==========================================
+
 *.tmp
 *.temp
 *.swp
@@ -85,14 +125,18 @@ $RECYCLE.BIN/
 *.cache
 
 # ==========================================
-# Test reports
+# Test Reports
 # ==========================================
+
 surefire-reports/
 failsafe-reports/
+**/surefire-reports/
+**/failsafe-reports/
 
 # ==========================================
-# Local database backups
+# Local Database Backups
 # ==========================================
+
 *.sql.gz
 *.dump
 *.backup
