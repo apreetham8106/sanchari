@@ -1,0 +1,79 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: anvay-backend
+  profiles:
+    active: dev
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/anvay}
+    username: ${DB_USER:anvay}
+    password: ${DB_PASSWORD:anvay}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none          # schema comes from db/init/01_schema.sql (see README)
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+anvay:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:4200}
+  jwt:
+    # >= 32 bytes. Override with JWT_SECRET in any real environment.
+    secret: ${JWT_SECRET:anvay-dev-secret-change-me-anvay-dev-secret-change-me}
+    access-ttl-minutes: 15
+    refresh-ttl-days: 30
+  otp:
+    length: 6
+    ttl-minutes: 5
+    max-attempts: 5
+    max-requests-per-window: 3
+    window-minutes: 10
+    dev-fixed-code: ""         # set only in the dev profile
+  sms:
+    provider: console          # console | http
+    http:
+      url: ""
+      api-key: ""
+      sender-id: ANVAY
+  digio:
+    mode: stub                 # stub | http
+    base-url: https://ext.digio.in:444
+    client-id: ""
+    client-secret: ""
+    webhook-secret: ""
+    driver-path: /v3/client/kyc/dl/request          # PLACEHOLDER - align with your Digio account docs
+    vehicle-path: /v3/client/kyc/rc/request         # PLACEHOLDER - align with your Digio account docs
+  dispatch:
+    start-radius-m: 1000
+    step-m: 1000
+    max-radius-m: 5000
+    offer-ttl-seconds: 15
+    batch-size: 5
+    search-timeout-seconds: 120
+    location-freshness-seconds: 30
+    tick-ms: 3000

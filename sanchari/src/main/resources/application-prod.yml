@@ -1,0 +1,11 @@
+# Prod profile: every secret must come from the environment.
+anvay:
+  otp:
+    dev-fixed-code: ""
+  sms:
+    provider: http
+  digio:
+    mode: http
+logging:
+  level:
+    com.anvay: INFO
