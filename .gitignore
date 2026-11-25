@@ -141,3 +141,11 @@ failsafe-reports/
 *.dump
 *.backup
 *.bak
+
+
+sanchari/.classpath
+sanchari/.factorypath
+sanchari/.settings/org.eclipse.jdt.apt.core.prefs
+sanchari/.settings/org.eclipse.jdt.core.prefs
+frontend/package-lock.json
+

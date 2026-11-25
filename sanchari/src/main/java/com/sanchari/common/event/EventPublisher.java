@@ -29,9 +29,14 @@ public class EventPublisher {
         String json;
         try {
             json = mapper.writeValueAsString(new EventEnvelope<>(UUID.randomUUID(), type, Instant.now(), payload));
-        } catch (JsonProcessingException e) {
-            throw new IllegalStateException("Cannot serialize event " + type, e);
-        }
+//        } catch (JsonProcessingException e) {
+//            throw new IllegalStateException("Cannot serialize event " + type, e);
+//        }
+        
+	    } catch (JsonProcessingException e) {
+	        log.error("Failed to serialize event type: {}", type, e);
+	        throw new IllegalStateException("Cannot serialize event " + type, e);
+	    }
         kafka.send(topic, key, json).whenComplete((result, ex) -> {
             if (ex != null) {
                 log.error("Failed to publish {} to {}", type, topic, ex);
